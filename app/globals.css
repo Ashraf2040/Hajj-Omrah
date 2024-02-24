@@ -1,4 +1,178 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.carousel-open:checked + .carousel-item {
+				position: static;
+				opacity: 100;
+			}
+			.carousel-item {
+				-webkit-transition: opacity 0.6s ease-out;
+				transition: opacity 0.6s ease-out;
+			}
+			#carousel-1:checked ~ .control-1,
+			#carousel-2:checked ~ .control-2,
+			#carousel-3:checked ~ .control-3 {
+				display: block;
+			}
+			.carousel-indicators {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				bottom: 2%;
+				left: 0;
+				right: 0;
+				text-align: center;
+				z-index: 10;
+			}
+			#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+			#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+			#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+				color: #2b6cb0;  /*Set to match the Tailwind colour you want the active one to be */
+			}
+      .carousel {
+        overflow: hidden;
+        width: 700px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .inner {
+        white-space: nowrap;
+        transition: transform 0.3s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+      
+      .carousel-item {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 490px;
+        background-color: #fff;
+      }
+      
+      .carousel-item-text {
+        font-size: 1.15rem;
+        margin: 40px 0 40px 0;
+        padding: 0 20px 0 20px;
+        white-space: normal;
+        color: #617d98;
+      }
+      .carousel-img {
+        width: 250px;
+        padding: 0 20px 0 20px;
+      }
+      
+      /* final stage */
+      
+      .carousel-buttons {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      
+      .button-arrow {
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      
+      .indicators {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+      }
+      
+      .indicator-buttons {
+        border: none;
+        cursor: pointer;
+      }
+      
+      .indicators > button {
+        margin: 5px;
+        background: none;
+      }
+      
+      .indicator-symbol {
+        color: #26343f;
+      }
+      
+      .indicator-symbol-active {
+        color: #ffffff;
+      }

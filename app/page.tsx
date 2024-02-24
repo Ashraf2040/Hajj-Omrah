@@ -3,6 +3,7 @@
 import { Message, experimental_useAssistant as useAssistant } from "ai/react";
 import { useEffect, useRef, useState } from "react";
 import QuestionCard from "./components/QuestionCard";
+import Link from "next/link";
 
 export default function Chat() {
   const { status, messages, input, submitMessage, handleInputChange, error } =
@@ -27,7 +28,8 @@ export default function Chat() {
   ];
   const newArray = askedQuestions1.concat(askedQuestions2);
 
-  const [merged, setMerged] = useState(false);
+  const [merged, setMerged] = useState(true);
+  const [enabled, setEnabled] = useState(false);
 
   const [questionArray, setQuestionArray] = useState(askedQuestions1);
 
@@ -39,38 +41,48 @@ export default function Chat() {
     }
   }, [status]);
   console.log(messages);
-  // const roleToColorMap: Record<Message["role"], string> = {
-  //   system: "red",
-  //   user: "black",
-  //   assistant: "green",
-  //   function: "",
-  //   data: "",
-  //   tool: "",
-  // };
-
-  // if(!merged){
-  //   setQuestionArray(newArray)
-  // }
-  // else{
-  //   setQuestionArray(askedQuestions1)
-  // }
-
+  
+  const handleSerchClick = () => {
+    setEnabled(!enabled);
+  };
   const handleClick = () => {
     if (merged) {
       setQuestionArray(newArray);
     } else {
       setQuestionArray(askedQuestions1);
     }
-    setMerged(!merged)
+    setMerged(!merged);
   };
 
   return (
-    <div className=" flex flex-col lg:mx-20 items-center  py-4   ">
-      <form onSubmit={submitMessage} className="flex items-center   w-2/5 /">
+    <div className=" flex flex-col w-full  items-center  py-4   ">
+      <div
+        className="navigate flex items-center gap-2 my-2" 
+          
+        
+      >
+        <button
+          className="bg-gradient-to-br px-4 rounded-lg font-semibold text-white py-2 from-[#366a3d] to-green-400"
+          onClick={handleSerchClick}
+        >
+          Ask Ai
+        </button>
+        <Link href="/tour">
+          <button className="bg-gradient-to-br px-4 rounded-lg font-semibold text-white py-2 from-[#54A15E] to-green-400">
+            Tak a Tour
+          </button>
+        </Link>
+      </div>
+      <form
+        onSubmit={submitMessage}
+        className={` items-center  sm:w-4/5 lg:w-2/5 ${
+          !enabled ? "hidden" : "flex"
+        } `}
+      >
         <input
           ref={inputRef}
           disabled={status !== "awaiting_message"}
-          className="  p-4  border border-gray-300 w-full rounded shadow-xl"
+          className="  p-4  border border-gray-300  rounded shadow-xl w-full"
           value={input}
           placeholder="Type your question..."
           onChange={handleInputChange}
@@ -90,7 +102,7 @@ export default function Chat() {
           className="flex  gap-1 w-fit  font-semibold  text-green-900"
           onClick={handleClick}
         >
-        {!merged ?"Less examples":"More examples"}
+          {!merged ? "Less examples" : "More examples"}
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -110,22 +122,29 @@ export default function Chat() {
         </button>
       </div>
 
-      <div className=" p-12 rounded-lg min-h-40 w-full flex flex-col  ">
+      <div className=" p-12  min-h-40 w-full flex flex-col  ">
         <div>
           {messages.map((m: Message) => (
-            <div key={m.id} className="relative">
+            <div key={m.id} className=" py-8 bg-gray-100 rounded-lg ">
               <>
-                <div className="flex gap-2 items-center mb-10 ">
-                  <span className="text-3xl">
-                    {m.role === "user" ? "🤵" : ""}
-                  </span>
-                  <span className="bg-[#CDE4D6] px-8 py-2 rounded-r-lg rounded-tl-xl  ">
-                    {m.role === "user" && m.content}
+                <div className="flex gap-2 items-center justify-center mb-10    ">
+                  <span className="text-3xl flex items-ceter">
+                    {m.role === "user" && (
+                      <div className="absolute right-20">
+                        <span
+                          className="bg-[#CDE4D6] mr-4 rounded-l-lg rounded-tr-xl
+                         text-[20px] font-semibold px-8 py-2"
+                        >
+                          {m.content}
+                        </span>
+                        🤵
+                      </div>
+                    )}
                   </span>
                 </div>
                 <div>
                   {m.role === "assistant" && (
-                    <p className="whitespace-pre-wrap bg-white self-center rounded-lg mt-10 p-10">
+                    <p className="whitespace-pre-wrap ml-8 w-4/5 bg-white self-center  p-10">
                       {m.content}
                     </p>
                   )}
