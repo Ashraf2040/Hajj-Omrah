@@ -5,9 +5,7 @@ import "./globalicon.css";
 import Header from "./components/Header";
 import Footers from "./components/Footer";
 import Footer from "./components/Footer";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Provider from "./Provider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,14 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="m-0 p-0">
       <body className={`${inter.className} `}>
-      <Provider>
+   
       <Header />
           {children}
 
           <Footer />
 
 
-      </Provider>
+     
           
           
          

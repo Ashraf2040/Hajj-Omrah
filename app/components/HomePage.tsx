@@ -3,7 +3,7 @@
 import { Message, experimental_useAssistant as useAssistant } from "ai/react";
 import { useEffect, useRef, useState } from "react";
 
-import { useQuery, useMutation } from "@tanstack/react-query";
+
 import Link from "next/link";
 import QuestionCard from "./QuestionCard";
 
@@ -64,10 +64,7 @@ export default function HomePage() {
     }
     setMerged(!merged);
   };
-  const messageQuery = useQuery({
-    queryKey: ["message"],
-    queryFn: () => submitMessage(),
-  });
+ 
 
   
     return (
