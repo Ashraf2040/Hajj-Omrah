@@ -62,7 +62,7 @@ export default function SwipeCarousol() {
   };
   console.log(imgIndex);
   return (
-    <div className="relative   overflow-hidden py-8  ">
+    <div className="relative mb-20  overflow-hidden py-8  ">
       <motion.div
         drag="x"
         dragConstraints={{

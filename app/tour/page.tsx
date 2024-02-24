@@ -1,12 +1,13 @@
 import React from "react";
-import Carousol from "../components/Carousol";
-import Carousel2 from "../components/Carousel2";
+
 import SwipeCarousol from "../components/SwipeCarousol";
+import { AccordionDemo } from "../components/AccordionDemo";
 
 export default function page() {
   return (
-    <div className=" flex  overflow-hidden items-center justify-center ">
+    <div className=" flex  min-h-screen flex-col   justify-center ">
       <SwipeCarousol />
-    </div>
+      <div className="self-center w-4/5 mb-10  lg:hidden"><AccordionDemo /></div> 
+     </div>
   );
 }

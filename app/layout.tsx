@@ -5,6 +5,7 @@ import "./globalicon.css";
 import Header from "./components/Header";
 import Footers from "./components/Footer";
 import Footer from "./components/Footer";
+import { AccordionDemo } from "./components/AccordionDemo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,22 +19,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
- 
   return (
     <html lang="en" className="m-0 p-0">
-      <body className={`${inter.className} `}>
-   
-      <Header />
-          {children}
+      <body className={`${inter.className} flex relative flex-col h-screen`}>
+        <div>
+          <Header />
+        </div>
+        <div>{children}</div>
 
+        <div className="">
           <Footer />
-
-
-     
-          
-          
-         
-        
+        </div>
       </body>
     </html>
   );
