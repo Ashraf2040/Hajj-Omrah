@@ -18,14 +18,14 @@ export default function Header() {
       <h1 className=" leading-5 text-xl  font-semibold">
         A.I Assistant for the Guests of Allah{" "}
       </h1>
-      <div className=" flex absolute left-8 items-center gap-2 mt-3 ">
+      {/* <div className=" flex absolute left-8 items-center gap-2 mt-3 ">
         <button className="bg-[#E6EFEA] rounded-lg py-2  px-3 text-green-800 font-semibold">
           En
         </button>
         <button className="bg-[#E6EFEA] rounded-lg py-2 px-3 text-green-800 font-semibold">
           Ar
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
